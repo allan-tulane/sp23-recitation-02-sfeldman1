@@ -48,12 +48,41 @@ where $W(1) = 1$.
 
 - [ ] 4. (2 point) Now, derive the asymptotic behavior of $W(n)$ using $f(n) = 1$, $f(n) = \log n$ and $f(n) = n$. Then, generate actual values for $W(n)$ for your code and confirm that the trends match your derivations.
 
+n = 100000000 a = 4 b = 2
+f(n) = 1 -> O(n)   24019198012642645
+f(n) = n -> O(n*log(n))  3.1436171209481984e+16
+f(n) = log(n) -> O(log(n)^2)  2.179684038892993e+16
+
+
 **TODO: your answer goes here**
 
-- [ ] 5. (4 points) Now that you have a nice way to empirically generate valuess of $W(n)$, we can look at the relationship between $a$, $b$, and $f(n)$. Suppose that $f(n) = n^c$. What is the asypmptotic behavior of $W(n)$ if $c < \log_b a$? What about $c > \log_b a$? And if they are equal? Modify `compare_work` to compare empirical values for different work functions (at several different values of $n$) to justify your answer. 
+- [ ] 5. (4 points) Now that you have a nice way to empirically generate valuess of $W(n)$, we can look at the relationship between $a$, $b$, and $f(n)$. Suppose that $f(n) = n^c$. What is the asypmptotic behavior of $W(n)$ if $c < \log_b a$? What about $c > \log_b a$? And if they are equal? Modify `compare_work` to compare empirical values for different work functions (at several different values of $n$) to justify your answer.
 
-**TODO: your answer goes here**
+**
+for: n = sizes, a = 4, b = 2, c = 1 (c < log_b a)
+n = 10, returns 406.0
+n = 20, returns 1644.0
+n = 50, returns 7246.0
+n = 10000, return 432265456.0
+
+for: n = sizez, a = 4, b = 2, c = 10 (c > log_b a)
+n = 10, returns 10039215939.937073
+n = 20, returns 10280156863759.748
+n = 50, returns  9.803921568627826e+16
+n = 10000, return 1.003921568627451e+40
+
+For c < log_b a the work function grows slower than the number of operations so the algorithm takes less time to complete as the input size increases. So the work function grows as O(n^c) while the number of operations grows as O(n^log_b a) so the asymptotic behavior of W(n) is O(n^log_b a). Then for c > log_b, the work function grows faster than the number of operations so it takes more time to complete as the input size increases. So the work function grows as O(n^c) while the number of operations grows as O(n^log_b a) so the asymptotic behavior of W(n) is O(n^c). Then if c = log_b a then the work function and the number of operations grow at the same rate so the asymptotic behavior of W(n) is O(N^c) = (n^log_b a).
+**
+
 
 - [ ] 6. (3 points) $W(n)$ is meant to represent the running time of some recursive algorithm. Suppose we always had $a$ processors available to us and we wanted to compute the span of the same algorithm. Implement the function `span_calc` to compute the empirical span, where the work of the algorithm is given by $W(n)$. Implement `test_compare_span` to create a new comparison function for comparing span functions. Derive the asymptotic expressions for the span of the recurrences you used in problem 4 above. Confirm that everything matches up as it should. 
 
-**TODO: your answer goes here**
+
+
+
+n = 100000000 a = 4 b = 2
+f(n) = 1 -> **O(n)** 28
+f(n) = n -> **O(n*log(n))** 199999999.50988388
+f(n) = log(n) -> **O(log(n)^2)**  255.06371971017307
+
+****
